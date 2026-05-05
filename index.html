@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SolarWatch — Backup System Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="6" fill="#F4B942"/>
+          <line x1="14" y1="1" x2="14" y2="5" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+          <line x1="14" y1="23" x2="14" y2="27" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+          <line x1="1" y1="14" x2="5" y2="14" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+          <line x1="23" y1="14" x2="27" y2="14" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+          <line x1="20.24" y1="20.24" x2="23.07" y2="23.07" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+          <line x1="23.07" y1="4.93" x2="20.24" y2="7.76" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+          <line x1="7.76" y1="20.24" x2="4.93" y2="23.07" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>SolarWatch</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#overview" class="nav-link">Overview</a></li>
+        <li><a href="#components" class="nav-link">Components</a></li>
+        <li><a href="#simulation" class="nav-link">Simulation</a></li>
+        <li><a href="#performance" class="nav-link">Performance</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-content">
+      <p class="hero-label">Design &amp; Implementation Project</p>
+      <h1 class="hero-title">Solar-Powered<br/><em>Backup System</em><br/>Monitor</h1>
+      <p class="hero-sub">A static frontend demonstration of how HTML, CSS and JavaScript can represent, simulate and communicate a real-world renewable energy infrastructure.</p>
+      <div class="hero-cta">
+        <a href="#simulation" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Launch Simulation
+        </a>
+        <a href="#overview" class="btn btn-ghost">Explore System</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-orb"></div>
+      <canvas id="heroCanvas" width="480" height="480"></canvas>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-val" id="hsSolar">4.2</span><span class="stat-unit">kW</span>
+        <p>Solar Input</p>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-val" id="hsBattery">87</span><span class="stat-unit">%</span>
+        <p>Battery Level</p>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-val" id="hsLoad">2.8</span><span class="stat-unit">kW</span>
+        <p>Load Output</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">System Overview</span>
+        <h2 class="section-title">How the System Works</h2>
+        <p class="section-desc">A solar-powered backup system captures sunlight, converts it to usable electricity, stores excess energy in batteries, and delivers reliable power when the grid fails or solar input is insufficient.</p>
+      </div>
+      <div class="flow-diagram">
+        <div class="flow-step" data-step="1">
+          <div class="flow-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="24" cy="24" r="8"/>
+              <line x1="24" y1="4" x2="24" y2="10"/>
+              <line x1="24" y1="38" x2="24" y2="44"/>
+              <line x1="4" y1="24" x2="10" y2="24"/>
+              <line x1="38" y1="24" x2="44" y2="24"/>
+              <line x1="9.37" y1="9.37" x2="13.6" y2="13.6"/>
+              <line x1="34.4" y1="34.4" x2="38.63" y2="38.63"/>
+              <line x1="38.63" y1="9.37" x2="34.4" y2="13.6"/>
+              <line x1="13.6" y1="34.4" x2="9.37" y2="38.63"/>
+            </svg>
+          </div>
+          <h3>Solar Panels</h3>
+          <p>Photovoltaic cells absorb sunlight and convert it into direct current (DC) electricity through the photovoltaic effect.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 60 24" fill="none">
+            <path d="M0 12 H50 M44 6 L52 12 L44 18" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot1"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot2"/>
+          </svg>
+        </div>
+        <div class="flow-step" data-step="2">
+          <div class="flow-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="10" width="32" height="28" rx="3"/>
+              <path d="M20 10V6M28 10V6"/>
+              <path d="M16 22 L22 16 L22 22 L28 16 L28 22"/>
+            </svg>
+          </div>
+          <h3>Charge Controller</h3>
+          <p>Regulates voltage and current from the solar panels to safely charge the battery bank, preventing overcharge and damage.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 60 24" fill="none">
+            <path d="M0 12 H50 M44 6 L52 12 L44 18" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot1"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot2"/>
+          </svg>
+        </div>
+        <div class="flow-step" data-step="3">
+          <div class="flow-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="6" y="14" width="28" height="20" rx="2"/>
+              <path d="M34 20h4a2 2 0 012 2v4a2 2 0 01-2 2h-4"/>
+              <line x1="12" y1="24" x2="28" y2="24"/>
+              <path d="M10 14v-4M24 14v-4"/>
+            </svg>
+          </div>
+          <h3>Battery Bank</h3>
+          <p>Stores excess DC electricity for use during low sunlight conditions or grid failures, providing stable backup power.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 60 24" fill="none">
+            <path d="M0 12 H50 M44 6 L52 12 L44 18" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot1"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot2"/>
+          </svg>
+        </div>
+        <div class="flow-step" data-step="4">
+          <div class="flow-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="8" y="10" width="32" height="28" rx="3"/>
+              <path d="M20 24 L24 18 L24 24 L28 18"/>
+              <path d="M14 34h20"/>
+            </svg>
+          </div>
+          <h3>Inverter</h3>
+          <p>Converts stored DC power from the battery into alternating current (AC) compatible with household appliances and loads.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 60 24" fill="none">
+            <path d="M0 12 H50 M44 6 L52 12 L44 18" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot1"/>
+            <circle cx="10" cy="12" r="2" fill="#F4B942" class="flow-dot dot2"/>
+          </svg>
+        </div>
+        <div class="flow-step" data-step="5">
+          <div class="flow-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="10" y="10" width="12" height="18" rx="2"/>
+              <rect x="26" y="10" width="12" height="18" rx="2"/>
+              <line x1="14" y1="28" x2="14" y2="36"/>
+              <line x1="34" y1="28" x2="34" y2="36"/>
+              <path d="M10 36h28"/>
+              <circle cx="14" cy="14" r="2" fill="currentColor" opacity="0.5"/>
+              <circle cx="34" cy="14" r="2" fill="currentColor" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3>Load / Appliances</h3>
+          <p>Electrical appliances and devices powered by the system receive clean, regulated AC power from the inverter output.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section class="section section-dark" id="components">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">System Components</span>
+        <h2 class="section-title">Component Breakdown</h2>
+        <p class="section-desc">Each component plays a critical role in ensuring the system operates efficiently, safely, and reliably across all conditions.</p>
+      </div>
+      <div class="components-grid">
+
+        <div class="comp-card" data-comp="panel">
+          <div class="comp-card-header">
+            <div class="comp-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="6" width="36" height="28" rx="2"/>
+                <line x1="2" y1="14" x2="38" y2="14"/>
+                <line x1="2" y1="22" x2="38" y2="22"/>
+                <line x1="14" y1="6" x2="14" y2="34"/>
+                <line x1="26" y1="6" x2="26" y2="34"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Solar Panel Array</h3>
+              <span class="comp-status comp-status--active">Active</span>
+            </div>
+          </div>
+          <div class="comp-metrics">
+            <div class="comp-metric"><span>Rated Power</span><strong>4 × 250W = 1000W</strong></div>
+            <div class="comp-metric"><span>Technology</span><strong>Monocrystalline Si</strong></div>
+            <div class="comp-metric"><span>Efficiency</span><strong>19.4%</strong></div>
+            <div class="comp-metric"><span>Voltage (Voc)</span><strong>37.2 V</strong></div>
+          </div>
+          <p class="comp-desc">The panel array faces south at a 20° tilt for optimal year-round irradiance capture. Bypass diodes prevent reverse current flow from shaded cells.</p>
+        </div>
+
+        <div class="comp-card" data-comp="controller">
+          <div class="comp-card-header">
+            <div class="comp-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="8" width="28" height="24" rx="2"/>
+                <path d="M16 8V4M24 8V4"/>
+                <circle cx="14" cy="20" r="3"/>
+                <circle cx="26" cy="20" r="3"/>
+                <path d="M17 20h6"/>
+              </svg>
+            </div>
+            <div>
+              <h3>MPPT Charge Controller</h3>
+              <span class="comp-status comp-status--active">Regulating</span>
+            </div>
+          </div>
+          <div class="comp-metrics">
+            <div class="comp-metric"><span>Type</span><strong>MPPT 40A</strong></div>
+            <div class="comp-metric"><span>Input Voltage</span><strong>12–150 V</strong></div>
+            <div class="comp-metric"><span>Efficiency</span><strong>98%</strong></div>
+            <div class="comp-metric"><span>Protection</span><strong>Overcharge / Short</strong></div>
+          </div>
+          <p class="comp-desc">Maximum Power Point Tracking technology extracts up to 30% more energy than PWM controllers by continuously adjusting impedance matching.</p>
+        </div>
+
+        <div class="comp-card" data-comp="battery">
+          <div class="comp-card-header">
+            <div class="comp-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="4" y="12" width="28" height="16" rx="2"/>
+                <path d="M32 18h4v4h-4"/>
+                <line x1="10" y1="20" x2="26" y2="20"/>
+                <path d="M8 12v-3M16 12v-3"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Battery Bank</h3>
+              <span class="comp-status comp-status--charging">Charging</span>
+            </div>
+          </div>
+          <div class="comp-metrics">
+            <div class="comp-metric"><span>Chemistry</span><strong>LiFePO4</strong></div>
+            <div class="comp-metric"><span>Capacity</span><strong>200 Ah / 24 V</strong></div>
+            <div class="comp-metric"><span>Cycle Life</span><strong>3,000+ cycles</strong></div>
+            <div class="comp-metric"><span>DoD</span><strong>80%</strong></div>
+          </div>
+          <p class="comp-desc">Lithium Iron Phosphate chemistry provides superior thermal stability, long service life and consistent discharge voltage compared to lead-acid alternatives.</p>
+        </div>
+
+        <div class="comp-card" data-comp="inverter">
+          <div class="comp-card-header">
+            <div class="comp-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="8" width="28" height="24" rx="2"/>
+                <path d="M14 26 L18 16 L22 22 L26 16"/>
+                <line x1="10" y1="30" x2="30" y2="30"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Pure Sine Inverter</h3>
+              <span class="comp-status comp-status--active">Online</span>
+            </div>
+          </div>
+          <div class="comp-metrics">
+            <div class="comp-metric"><span>Output</span><strong>2000W / 230V AC</strong></div>
+            <div class="comp-metric"><span>Waveform</span><strong>Pure Sine Wave</strong></div>
+            <div class="comp-metric"><span>Frequency</span><strong>50 Hz</strong></div>
+            <div class="comp-metric"><span>Efficiency</span><strong>93%</strong></div>
+          </div>
+          <p class="comp-desc">Pure sine wave output ensures compatibility with sensitive electronics including medical equipment, variable-speed motors, and audio systems.</p>
+        </div>
+
+        <div class="comp-card" data-comp="transfer">
+          <div class="comp-card-header">
+            <div class="comp-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="20" cy="20" r="14"/>
+                <path d="M14 20h12M22 16l4 4-4 4"/>
+                <path d="M20 10v4M20 26v4"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Automatic Transfer Switch</h3>
+              <span class="comp-status comp-status--standby">Standby</span>
+            </div>
+          </div>
+          <div class="comp-metrics">
+            <div class="comp-metric"><span>Switching Time</span><strong>&lt; 20 ms</strong></div>
+            <div class="comp-metric"><span>Rating</span><strong>63A / 230V</strong></div>
+            <div class="comp-metric"><span>Priority</span><strong>Solar → Grid</strong></div>
+            <div class="comp-metric"><span>Type</span><strong>Open Transition</strong></div>
+          </div>
+          <p class="comp-desc">Detects grid failure within milliseconds and seamlessly switches to battery-backed inverter power, providing near-uninterruptible supply to critical loads.</p>
+        </div>
+
+        <div class="comp-card" data-comp="monitor">
+          <div class="comp-card-header">
+            <div class="comp-icon">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="8" width="28" height="20" rx="2"/>
+                <path d="M14 32h12M20 28v4"/>
+                <polyline points="10,22 15,16 20,20 25,13 30,17"/>
+              </svg>
+            </div>
+            <div>
+              <h3>System Monitor</h3>
+              <span class="comp-status comp-status--active">Logging</span>
+            </div>
+          </div>
+          <div class="comp-metrics">
+            <div class="comp-metric"><span>Interface</span><strong>Web Dashboard</strong></div>
+            <div class="comp-metric"><span>Data Points</span><strong>Voltage, Current, SoC</strong></div>
+            <div class="comp-metric"><span>Logging</span><strong>Real-time</strong></div>
+            <div class="comp-metric"><span>Alerts</span><strong>Threshold-based</strong></div>
+          </div>
+          <p class="comp-desc">This very interface — a frontend-only dashboard demonstrating how JavaScript can represent system telemetry, energy flow and usage history interactively.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULATION -->
+  <section class="section" id="simulation">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Interactive Simulation</span>
+        <h2 class="section-title">System Simulation</h2>
+        <p class="section-desc">Adjust conditions and observe how the solar backup system responds. All values update dynamically using JavaScript.</p>
+      </div>
+      <div class="sim-layout">
+        <!-- Controls -->
+        <div class="sim-controls">
+          <h3 class="sim-panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 2v2M12 20v2"/></svg>
+            Control Panel
+          </h3>
+
+          <div class="ctrl-group">
+            <label>
+              <span>Solar Irradiance</span>
+              <span class="ctrl-val" id="irradianceVal">800 W/m²</span>
+            </label>
+            <input type="range" id="irradiance" min="0" max="1200" value="800" class="ctrl-slider">
+            <div class="ctrl-hint">Sunlight intensity hitting the panels</div>
+          </div>
+
+          <div class="ctrl-group">
+            <label>
+              <span>Load Demand</span>
+              <span class="ctrl-val" id="loadVal">1400 W</span>
+            </label>
+            <input type="range" id="load" min="100" max="2000" value="1400" class="ctrl-slider">
+            <div class="ctrl-hint">Total power consumed by appliances</div>
+          </div>
+
+          <div class="ctrl-group">
+            <label>
+              <span>Temperature</span>
+              <span class="ctrl-val" id="tempVal">25 °C</span>
+            </label>
+            <input type="range" id="temperature" min="0" max="60" value="25" class="ctrl-slider">
+            <div class="ctrl-hint">Ambient temperature (affects panel output)</div>
+          </div>
+
+          <div class="ctrl-group">
+            <label>
+              <span>Battery Initial SoC</span>
+              <span class="ctrl-val" id="socInitVal">87 %</span>
+            </label>
+            <input type="range" id="socInit" min="0" max="100" value="87" class="ctrl-slider">
+            <div class="ctrl-hint">Starting state of charge for simulation</div>
+          </div>
+
+          <div class="sim-toggles">
+            <div class="sim-toggle" id="toggleGrid">
+              <div class="toggle-switch active" data-state="true"></div>
+              <span>Grid Available</span>
+            </div>
+            <div class="sim-toggle" id="toggleCloud">
+              <div class="toggle-switch" data-state="false"></div>
+              <span>Cloud Cover</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="runSim" style="width:100%;margin-top:1rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Run Simulation
+          </button>
+        </div>
+
+        <!-- Live Display -->
+        <div class="sim-display">
+          <div class="sim-flowchart">
+
+            <!-- Node 1: Solar Array -->
+            <div class="sim-node" id="nodePanel">
+              <div class="sim-node-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="6" width="36" height="28" rx="2"/>
+                  <line x1="2" y1="14" x2="38" y2="14"/>
+                  <line x1="2" y1="22" x2="38" y2="22"/>
+                  <line x1="14" y1="6" x2="14" y2="34"/>
+                  <line x1="26" y1="6" x2="26" y2="34"/>
+                </svg>
+              </div>
+              <span class="sim-node-label">Solar Array</span>
+              <span class="sim-node-val" id="snPanelVal">—</span>
+            </div>
+
+            <!-- Wire 1 -->
+            <div class="sim-wire-h" id="wirePanelCtrl">
+              <div class="ep"></div>
+            </div>
+
+            <!-- Node 2: MPPT Controller -->
+            <div class="sim-node" id="nodeCtrl">
+              <div class="sim-node-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="6" y="8" width="28" height="24" rx="2"/>
+                  <path d="M16 8V4M24 8V4"/>
+                  <path d="M10 22 L15 15 L20 20 L25 13 L30 17"/>
+                </svg>
+              </div>
+              <span class="sim-node-label">MPPT Controller</span>
+              <span class="sim-node-val" id="snCtrlVal">—</span>
+            </div>
+
+            <!-- Wire 2 -->
+            <div class="sim-wire-h" id="wireCtrlBat">
+              <div class="ep"></div>
+            </div>
+
+            <!-- Node 3: Battery Bank -->
+            <div class="sim-node sim-node-battery" id="nodeBattery">
+              <div class="sim-node-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="12" width="28" height="16" rx="2"/>
+                  <path d="M32 18h4v4h-4"/>
+                  <path d="M8 12v-3M16 12v-3"/>
+                </svg>
+              </div>
+              <span class="sim-node-label">Battery Bank</span>
+              <span class="sim-node-val" id="snBatVal">—</span>
+              <div class="battery-bar-wrap">
+                <div class="battery-bar">
+                  <div class="battery-fill" id="batteryFill" style="width:87%"></div>
+                </div>
+                <span class="battery-pct" id="batteryPct">87%</span>
+              </div>
+            </div>
+
+            <!-- Wire 3 -->
+            <div class="sim-wire-h" id="wireBatInv">
+              <div class="ep"></div>
+            </div>
+
+            <!-- Node 4: Inverter -->
+            <div class="sim-node" id="nodeInverter">
+              <div class="sim-node-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="6" y="8" width="28" height="24" rx="2"/>
+                  <path d="M12 24 L16 16 L20 22 L24 14 L28 19"/>
+                  <line x1="10" y1="28" x2="30" y2="28"/>
+                </svg>
+              </div>
+              <span class="sim-node-label">Inverter</span>
+              <span class="sim-node-val" id="snInvVal">—</span>
+            </div>
+
+            <!-- Wire 4 -->
+            <div class="sim-wire-h" id="wireInvLoad">
+              <div class="ep"></div>
+            </div>
+
+            <!-- Node 5: Load -->
+            <div class="sim-node" id="nodeLoad">
+              <div class="sim-node-icon">
+                <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="8" y="8" width="10" height="16" rx="2"/>
+                  <rect x="22" y="8" width="10" height="16" rx="2"/>
+                  <line x1="12" y1="24" x2="12" y2="32"/>
+                  <line x1="28" y1="24" x2="28" y2="32"/>
+                  <line x1="6" y1="32" x2="34" y2="32"/>
+                </svg>
+              </div>
+              <span class="sim-node-label">Load</span>
+              <span class="sim-node-val" id="snLoadVal">—</span>
+            </div>
+
+          </div>
+
+          <!-- Output metrics -->
+          <div class="sim-outputs">
+            <div class="sim-output-card">
+              <span class="so-label">System Mode</span>
+              <span class="so-val" id="soMode">—</span>
+            </div>
+            <div class="sim-output-card">
+              <span class="so-label">Net Power Balance</span>
+              <span class="so-val" id="soBalance">—</span>
+            </div>
+            <div class="sim-output-card">
+              <span class="so-label">Est. Backup Duration</span>
+              <span class="so-val" id  ="soBackup">—</span>
+            </div>
+            <div class="sim-output-card">
+              <span class="so-label">Panel Efficiency</span>
+              <span class="so-val" id="soEfficiency">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFORMANCE -->
+  <section class="section section-dark" id="performance">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Performance Analysis</span>
+        <h2 class="section-title">System Performance</h2>
+        <p class="section-desc">Visualizing expected daily solar generation, load consumption patterns, and battery state of charge throughout a typical day.</p>
+      </div>
+
+      <div class="chart-tabs">
+        <button class="chart-tab active" data-chart="generation">Energy Generation</button>
+        <button class="chart-tab" data-chart="load">Load Consumption</button>
+        <button class="chart-tab" data-chart="soc">Battery SoC</button>
+      </div>
+
+      <div class="chart-area">
+        <canvas id="perfChart" height="320"></canvas>
+      </div>
+
+      <div class="perf-summary">
+        <div class="perf-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <div>
+            <strong>Daily Generation</strong>
+            <span>~5.2 kWh</span>
+          </div>
+        </div>
+        <div class="perf-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <div>
+            <strong>Peak Generation</strong>
+            <span>4.2 kW at noon</span>
+          </div>
+        </div>
+        <div class="perf-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="14" height="10" rx="2"/><path d="M16 11h2a2 2 0 010 4h-2"/><line x1="6" y1="7" x2="6" y2="5"/><line x1="10" y1="7" x2="10" y2="5"/></svg>
+          <div>
+            <strong>Battery Autonomy</strong>
+            <span>~6.5 hours</span>
+          </div>
+        </div>
+        <div class="perf-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div>
+            <strong>System Uptime</strong>
+            <span>99.3%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="nav-logo" href="#hero">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="6" fill="#F4B942"/>
+              <line x1="14" y1="1" x2="14" y2="5" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="23" x2="14" y2="27" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+              <line x1="1" y1="14" x2="5" y2="14" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+              <line x1="23" y1="14" x2="27" y2="14" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+              <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+              <line x1="20.24" y1="20.24" x2="23.07" y2="23.07" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+              <line x1="23.07" y1="4.93" x2="20.24" y2="7.76" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+              <line x1="7.76" y1="20.24" x2="4.93" y2="23.07" stroke="#F4B942" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>SolarWatch</span>
+          </a>
+          <p>A frontend demonstration project showcasing how HTML, CSS and JavaScript can represent and simulate real-world renewable energy systems.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#overview">System Overview</a></li>
+            <li><a href="#components">Components</a></li>
+            <li><a href="#simulation">Simulation</a></li>
+            <li><a href="#performance">Performance</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Technologies</h4>
+          <ul>
+            <li>HTML5 Semantics</li>
+            <li>CSS Grid &amp; Flexbox</li>
+            <li>CSS Media Queries</li>
+            <li>Vanilla JavaScript</li>
+            <li>Canvas API</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Design &amp; Implementation of a Solar-Powered Backup System Monitoring Website — Final Year Project</p>
+        <p class="footer-tech">Built with HTML · CSS · JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
